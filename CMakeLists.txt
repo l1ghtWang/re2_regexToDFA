@@ -106,27 +106,27 @@ if(RE2_BUILD_TESTING)
   target_link_libraries(testing PUBLIC re2)
 
   set(TEST_TARGETS
-      charclass_test
-      compile_test
-      filtered_re2_test
-      mimics_pcre_test
-      parse_test
-      possible_match_test
-      re2_test
-      re2_arg_test
-      regexp_test
-      required_prefix_test
-      search_test
-      set_test
-      simplify_test
-      string_generator_test
-
+      # charclass_test
+      # compile_test
+      # filtered_re2_test
+      # mimics_pcre_test
+      # parse_test
+      # possible_match_test
+      # re2_test
+      # re2_arg_test
+      # regexp_test
+      # required_prefix_test
+      # search_test
+      # set_test
+      # simplify_test
+      # string_generator_test
+      my_dfa_test
       dfa_test
-      exhaustive1_test
-      exhaustive2_test
-      exhaustive3_test
-      exhaustive_test
-      random_test
+      # exhaustive1_test
+      # exhaustive2_test
+      # exhaustive3_test
+      # exhaustive_test
+      # random_test
       )
 
   set(BENCHMARK_TARGETS

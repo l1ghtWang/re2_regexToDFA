@@ -49,41 +49,44 @@ static void DoBuild(Prog* prog) {
 
 TEST(Multithreaded, BuildEntireDFA) {
   // Create regexp with 2^FLAGS_size states in DFA.
-  std::string s = "a";
-  for (int i = 0; i < GetFlag(FLAGS_size); i++)
-    s += "[ab]";
-  s += "b";
+  // std::string s = "(ab|cd|ef)";
+  std::string s = "c[^ab]*d";
+  // for (int i = 0; i < GetFlag(FLAGS_size); i++)
+  //   s += "[ab]";
+  // s += "b";
   Regexp* re = Regexp::Parse(s, Regexp::LikePerl, NULL);
   ASSERT_TRUE(re != NULL);
 
   // Check that single-threaded code works.
-  {
-    Prog* prog = re->CompileToProg(0);
-    ASSERT_TRUE(prog != NULL);
+  // {
+  //   Prog* prog = re->CompileToProg(0);
+  //   ASSERT_TRUE(prog != NULL);
 
-    std::thread t(DoBuild, prog);
-    t.join();
+  //   std::thread t(DoBuild, prog);
+  //   t.join();
 
-    delete prog;
-  }
+  //   delete prog;
+  // }
 
   // Build the DFA simultaneously in a bunch of threads.
-  for (int i = 0; i < GetFlag(FLAGS_repeat); i++) {
+  // for (int i = 0; i < GetFlag(FLAGS_repeat); i++) {
     Prog* prog = re->CompileToProg(0);
     ASSERT_TRUE(prog != NULL);
 
-    std::vector<std::thread> threads;
-    for (int j = 0; j < GetFlag(FLAGS_threads); j++)
-      threads.emplace_back(DoBuild, prog);
-    for (int j = 0; j < GetFlag(FLAGS_threads); j++)
-      threads[j].join();
+    // std::vector<std::thread> threads;
+    // for (int j = 0; j < GetFlag(FLAGS_threads); j++)
+    //   threads.emplace_back(DoBuild, prog);
+    // for (int j = 0; j < GetFlag(FLAGS_threads); j++)
+    //   threads[j].join();
 
     // One more compile, to make sure everything is okay.
-    prog->BuildEntireDFA(Prog::kFirstMatch, nullptr);
+    // prog->BuildEntireDFA(Prog::kFirstMatch, nullptr);
+    prog->BuildEntireDFA(Prog::kManyMatch, nullptr);
     delete prog;
-  }
+  // }
 
   re->Decref();
+  exit(0);
 }
 
 // Check that DFA size requirements are followed.

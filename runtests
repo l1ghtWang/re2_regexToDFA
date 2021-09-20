@@ -14,8 +14,11 @@ if [ "x$1" = "x-shared-library-path" ]; then
 fi
 
 success=true
+echo $i
 for i; do
+	echo $i
 	printf "%-40s" $i
+	echo $i >$i.log 2>&1
 	if $($i >$i.log 2>&1) 2>/dev/null; then
 		echo PASS
 	else

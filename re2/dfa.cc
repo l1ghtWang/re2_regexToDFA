@@ -35,6 +35,8 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <iostream>
+#include <list>
 
 #include "util/logging.h"
 #include "util/mix.h"
@@ -1961,6 +1963,54 @@ int DFA::BuildAllStates(const Prog::DFAStateCallback& cb) {
     if (oom)
       break;
   }
+
+
+  std::cout<<(m.find(params.start)->first)<<std::endl;
+  std::vector<State*> statePTRs(static_cast<int>(m.size()));
+  int counter=0;
+  for(auto it = m.begin(); it != m.end(); ++it )
+  {
+    // statePTRs.assign((int)(it->second),it->first);
+    statePTRs[(int)(it->second)]=(it->first);
+    // std::cout<<"stateID:"<<(int)(it->second)<<", statePTR:"<<it->first<<std::endl;
+    counter++;
+  }
+  std::cout<<counter<<std::endl;
+  // std::cout<<"m iteration finished!!\n";
+  counter=0;
+  std::cout<<"size of statePTRs:"<<statePTRs.size()<<std::endl;
+
+
+  for(int i=0; i<statePTRs.size();i++)
+  {
+    // if(statePTRs[i]!=DeadState&&!statePTRs[i]->IsMatch())
+    // if(statePTRs[i]!=DeadState)
+    {
+      std::cout<<"state"<<i<<":";
+      for(int c=0; c<256; c++)
+      {
+        State* nextStatePTR = statePTRs[i]->next_[ByteMap(c)].load(std::memory_order_relaxed);
+        int curStateId;
+        if(m.find(nextStatePTR)==m.end())
+          std::cout<<"d ";
+        else
+        {   
+          curStateId = m.find(nextStatePTR)->second;
+          std::cout<<curStateId<<" ";
+        }
+      }
+      std::cout<<std::endl;
+    }
+  }
+
+  std::cout<<"Accept:";
+  for(int i=0; i<statePTRs.size();i++)
+  {
+    if(statePTRs[i]->IsMatch())
+      std::cout<<i<<" ";
+  }
+
+  std::cout<<std::endl;
 
   return static_cast<int>(m.size());
 }
