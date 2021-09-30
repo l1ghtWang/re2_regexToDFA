@@ -745,6 +745,7 @@ bool RE2::Match(const StringPiece& text,
                             matchp, &dfa_failed, NULL)) {
         if (dfa_failed) {
           if (options_.log_errors())
+            exit(1);
             LOG(ERROR) << "DFA out of memory: "
                        << "pattern length " << pattern_.size() << ", "
                        << "program size " << prog_->size() << ", "
@@ -770,6 +771,7 @@ bool RE2::Match(const StringPiece& text,
       if (!prog->SearchDFA(match, text, Prog::kAnchored,
                            Prog::kLongestMatch, &match, &dfa_failed, NULL)) {
         if (dfa_failed) {
+          exit(1);/////////////////////////////////////////
           if (options_.log_errors())
             LOG(ERROR) << "DFA out of memory: "
                        << "pattern length " << pattern_.size() << ", "
@@ -926,6 +928,7 @@ bool RE2::DoMatch(const StringPiece& text,
     // We are not interested in results
     delete[] heapvec;
     return true;
+    // return false; ///////////////////////modified!!
   }
 
   // If we got here, we must have matched the whole pattern.

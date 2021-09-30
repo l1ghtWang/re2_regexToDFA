@@ -37,6 +37,7 @@ CMakeFiles/re2.dir/re2/dfa.cc.o
  ../util/mix.h
  ../util/mutex.h
  ../util/strutil.h
+ ../util/test.h
  ../util/util.h
  /home/wygzero/re2/re2/dfa.cc
 CMakeFiles/re2.dir/re2/filtered_re2.cc.o
@@ -203,6 +204,18 @@ CMakeFiles/re2.dir/re2/unicode_groups.cc.o
  ../util/utf.h
  ../util/util.h
  /home/wygzero/re2/re2/unicode_groups.cc
+CMakeFiles/re2.dir/util/analyzer.cc.o
+ /home/wygzero/re2/util/analyzer.cc
+ /home/wygzero/re2/util/analyzer.h
+ /home/wygzero/re2/util/fsm.h
+ /home/wygzero/re2/util/input.h
+CMakeFiles/re2.dir/util/fsm.cc.o
+ /home/wygzero/re2/util/fsm.cc
+ /home/wygzero/re2/util/fsm.h
+ /home/wygzero/re2/util/input.h
+CMakeFiles/re2.dir/util/input.cc.o
+ /home/wygzero/re2/util/input.cc
+ /home/wygzero/re2/util/input.h
 CMakeFiles/re2.dir/util/rune.cc.o
  ../util/utf.h
  /home/wygzero/re2/util/rune.cc

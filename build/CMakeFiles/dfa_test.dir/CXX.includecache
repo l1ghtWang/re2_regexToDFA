@@ -203,6 +203,12 @@ thread
 -
 vector
 -
+iostream
+-
+fstream
+-
+sstream
+-
 util/test.h
 /home/wygzero/re2/re2/testing/util/test.h
 util/flags.h
@@ -223,12 +229,4 @@ re2/testing/regexp_generator.h
 /home/wygzero/re2/re2/testing/re2/testing/regexp_generator.h
 re2/testing/string_generator.h
 /home/wygzero/re2/re2/testing/re2/testing/string_generator.h
-
-/home/wygzero/re2/util/test.cc
-stdio.h
--
-string
--
-util/test.h
-/home/wygzero/re2/util/util/test.h
 

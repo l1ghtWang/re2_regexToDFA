@@ -203,6 +203,12 @@ thread
 -
 vector
 -
+iostream
+-
+fstream
+-
+sstream
+-
 util/test.h
 /home/wygzero/re2/re2/testing/util/test.h
 util/flags.h

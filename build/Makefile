@@ -200,6 +200,32 @@ regexp_benchmark/fast:
 .PHONY : regexp_benchmark/fast
 
 #=============================================================================
+# Target rules for targets named dfa_verify_profiling
+
+# Build rule for target.
+dfa_verify_profiling: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dfa_verify_profiling
+.PHONY : dfa_verify_profiling
+
+# fast build rule for target.
+dfa_verify_profiling/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/build
+.PHONY : dfa_verify_profiling/fast
+
+#=============================================================================
+# Target rules for targets named generate_dfa
+
+# Build rule for target.
+generate_dfa: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 generate_dfa
+.PHONY : generate_dfa
+
+# fast build rule for target.
+generate_dfa/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/build
+.PHONY : generate_dfa/fast
+
+#=============================================================================
 # Target rules for targets named NightlyMemCheck
 
 # Build rule for target.
@@ -276,6 +302,19 @@ NightlyMemoryCheck: cmake_check_build_system
 NightlyMemoryCheck/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/NightlyMemoryCheck.dir/build.make CMakeFiles/NightlyMemoryCheck.dir/build
 .PHONY : NightlyMemoryCheck/fast
+
+#=============================================================================
+# Target rules for targets named dfa_generate_verify_profiling
+
+# Build rule for target.
+dfa_generate_verify_profiling: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 dfa_generate_verify_profiling
+.PHONY : dfa_generate_verify_profiling
+
+# fast build rule for target.
+dfa_generate_verify_profiling/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/build
+.PHONY : dfa_generate_verify_profiling/fast
 
 #=============================================================================
 # Target rules for targets named dfa_test
@@ -1101,6 +1140,33 @@ re2/testing/backtrack.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/re2/testing/backtrack.cc.s
 .PHONY : re2/testing/backtrack.cc.s
 
+re2/testing/dfa_generate_verify_profiling.o: re2/testing/dfa_generate_verify_profiling.cc.o
+
+.PHONY : re2/testing/dfa_generate_verify_profiling.o
+
+# target to build an object file
+re2/testing/dfa_generate_verify_profiling.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/re2/testing/dfa_generate_verify_profiling.cc.o
+.PHONY : re2/testing/dfa_generate_verify_profiling.cc.o
+
+re2/testing/dfa_generate_verify_profiling.i: re2/testing/dfa_generate_verify_profiling.cc.i
+
+.PHONY : re2/testing/dfa_generate_verify_profiling.i
+
+# target to preprocess a source file
+re2/testing/dfa_generate_verify_profiling.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/re2/testing/dfa_generate_verify_profiling.cc.i
+.PHONY : re2/testing/dfa_generate_verify_profiling.cc.i
+
+re2/testing/dfa_generate_verify_profiling.s: re2/testing/dfa_generate_verify_profiling.cc.s
+
+.PHONY : re2/testing/dfa_generate_verify_profiling.s
+
+# target to generate assembly for a file
+re2/testing/dfa_generate_verify_profiling.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/re2/testing/dfa_generate_verify_profiling.cc.s
+.PHONY : re2/testing/dfa_generate_verify_profiling.cc.s
+
 re2/testing/dfa_test.o: re2/testing/dfa_test.cc.o
 
 .PHONY : re2/testing/dfa_test.o
@@ -1127,6 +1193,33 @@ re2/testing/dfa_test.s: re2/testing/dfa_test.cc.s
 re2/testing/dfa_test.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_test.dir/build.make CMakeFiles/dfa_test.dir/re2/testing/dfa_test.cc.s
 .PHONY : re2/testing/dfa_test.cc.s
+
+re2/testing/dfa_verify_profiling.o: re2/testing/dfa_verify_profiling.cc.o
+
+.PHONY : re2/testing/dfa_verify_profiling.o
+
+# target to build an object file
+re2/testing/dfa_verify_profiling.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/re2/testing/dfa_verify_profiling.cc.o
+.PHONY : re2/testing/dfa_verify_profiling.cc.o
+
+re2/testing/dfa_verify_profiling.i: re2/testing/dfa_verify_profiling.cc.i
+
+.PHONY : re2/testing/dfa_verify_profiling.i
+
+# target to preprocess a source file
+re2/testing/dfa_verify_profiling.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/re2/testing/dfa_verify_profiling.cc.i
+.PHONY : re2/testing/dfa_verify_profiling.cc.i
+
+re2/testing/dfa_verify_profiling.s: re2/testing/dfa_verify_profiling.cc.s
+
+.PHONY : re2/testing/dfa_verify_profiling.s
+
+# target to generate assembly for a file
+re2/testing/dfa_verify_profiling.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/re2/testing/dfa_verify_profiling.cc.s
+.PHONY : re2/testing/dfa_verify_profiling.cc.s
 
 re2/testing/dump.o: re2/testing/dump.cc.o
 
@@ -1181,6 +1274,33 @@ re2/testing/exhaustive_tester.s: re2/testing/exhaustive_tester.cc.s
 re2/testing/exhaustive_tester.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/testing.dir/build.make CMakeFiles/testing.dir/re2/testing/exhaustive_tester.cc.s
 .PHONY : re2/testing/exhaustive_tester.cc.s
+
+re2/testing/generate_dfa.o: re2/testing/generate_dfa.cc.o
+
+.PHONY : re2/testing/generate_dfa.o
+
+# target to build an object file
+re2/testing/generate_dfa.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/re2/testing/generate_dfa.cc.o
+.PHONY : re2/testing/generate_dfa.cc.o
+
+re2/testing/generate_dfa.i: re2/testing/generate_dfa.cc.i
+
+.PHONY : re2/testing/generate_dfa.i
+
+# target to preprocess a source file
+re2/testing/generate_dfa.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/re2/testing/generate_dfa.cc.i
+.PHONY : re2/testing/generate_dfa.cc.i
+
+re2/testing/generate_dfa.s: re2/testing/generate_dfa.cc.s
+
+.PHONY : re2/testing/generate_dfa.s
+
+# target to generate assembly for a file
+re2/testing/generate_dfa.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/re2/testing/generate_dfa.cc.s
+.PHONY : re2/testing/generate_dfa.cc.s
 
 re2/testing/my_dfa_test.o: re2/testing/my_dfa_test.cc.o
 
@@ -1425,6 +1545,33 @@ re2/unicode_groups.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/re2/unicode_groups.cc.s
 .PHONY : re2/unicode_groups.cc.s
 
+util/analyzer.o: util/analyzer.cc.o
+
+.PHONY : util/analyzer.o
+
+# target to build an object file
+util/analyzer.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/analyzer.cc.o
+.PHONY : util/analyzer.cc.o
+
+util/analyzer.i: util/analyzer.cc.i
+
+.PHONY : util/analyzer.i
+
+# target to preprocess a source file
+util/analyzer.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/analyzer.cc.i
+.PHONY : util/analyzer.cc.i
+
+util/analyzer.s: util/analyzer.cc.s
+
+.PHONY : util/analyzer.s
+
+# target to generate assembly for a file
+util/analyzer.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/analyzer.cc.s
+.PHONY : util/analyzer.cc.s
+
 util/benchmark.o: util/benchmark.cc.o
 
 .PHONY : util/benchmark.o
@@ -1451,6 +1598,60 @@ util/benchmark.s: util/benchmark.cc.s
 util/benchmark.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/regexp_benchmark.dir/build.make CMakeFiles/regexp_benchmark.dir/util/benchmark.cc.s
 .PHONY : util/benchmark.cc.s
+
+util/fsm.o: util/fsm.cc.o
+
+.PHONY : util/fsm.o
+
+# target to build an object file
+util/fsm.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/fsm.cc.o
+.PHONY : util/fsm.cc.o
+
+util/fsm.i: util/fsm.cc.i
+
+.PHONY : util/fsm.i
+
+# target to preprocess a source file
+util/fsm.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/fsm.cc.i
+.PHONY : util/fsm.cc.i
+
+util/fsm.s: util/fsm.cc.s
+
+.PHONY : util/fsm.s
+
+# target to generate assembly for a file
+util/fsm.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/fsm.cc.s
+.PHONY : util/fsm.cc.s
+
+util/input.o: util/input.cc.o
+
+.PHONY : util/input.o
+
+# target to build an object file
+util/input.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/input.cc.o
+.PHONY : util/input.cc.o
+
+util/input.i: util/input.cc.i
+
+.PHONY : util/input.i
+
+# target to preprocess a source file
+util/input.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/input.cc.i
+.PHONY : util/input.cc.i
+
+util/input.s: util/input.cc.s
+
+.PHONY : util/input.s
+
+# target to generate assembly for a file
+util/input.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/re2.dir/build.make CMakeFiles/re2.dir/util/input.cc.s
+.PHONY : util/input.cc.s
 
 util/pcre.o: util/pcre.cc.o
 
@@ -1539,6 +1740,9 @@ util/test.o: util/test.cc.o
 
 # target to build an object file
 util/test.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/util/test.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/util/test.cc.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/util/test.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_test.dir/build.make CMakeFiles/dfa_test.dir/util/test.cc.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_dfa_test.dir/build.make CMakeFiles/my_dfa_test.dir/util/test.cc.o
 .PHONY : util/test.cc.o
@@ -1549,6 +1753,9 @@ util/test.i: util/test.cc.i
 
 # target to preprocess a source file
 util/test.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/util/test.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/util/test.cc.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/util/test.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_test.dir/build.make CMakeFiles/dfa_test.dir/util/test.cc.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_dfa_test.dir/build.make CMakeFiles/my_dfa_test.dir/util/test.cc.i
 .PHONY : util/test.cc.i
@@ -1559,6 +1766,9 @@ util/test.s: util/test.cc.s
 
 # target to generate assembly for a file
 util/test.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_verify_profiling.dir/build.make CMakeFiles/dfa_verify_profiling.dir/util/test.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/generate_dfa.dir/build.make CMakeFiles/generate_dfa.dir/util/test.cc.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_generate_verify_profiling.dir/build.make CMakeFiles/dfa_generate_verify_profiling.dir/util/test.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dfa_test.dir/build.make CMakeFiles/dfa_test.dir/util/test.cc.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_dfa_test.dir/build.make CMakeFiles/my_dfa_test.dir/util/test.cc.s
 .PHONY : util/test.cc.s
@@ -1604,7 +1814,10 @@ help:
 	@echo "... NightlySubmit"
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
+	@echo "... dfa_generate_verify_profiling"
 	@echo "... dfa_test"
+	@echo "... dfa_verify_profiling"
+	@echo "... generate_dfa"
 	@echo "... my_dfa_test"
 	@echo "... re2"
 	@echo "... regexp_benchmark"
@@ -1663,15 +1876,24 @@ help:
 	@echo "... re2/testing/backtrack.o"
 	@echo "... re2/testing/backtrack.i"
 	@echo "... re2/testing/backtrack.s"
+	@echo "... re2/testing/dfa_generate_verify_profiling.o"
+	@echo "... re2/testing/dfa_generate_verify_profiling.i"
+	@echo "... re2/testing/dfa_generate_verify_profiling.s"
 	@echo "... re2/testing/dfa_test.o"
 	@echo "... re2/testing/dfa_test.i"
 	@echo "... re2/testing/dfa_test.s"
+	@echo "... re2/testing/dfa_verify_profiling.o"
+	@echo "... re2/testing/dfa_verify_profiling.i"
+	@echo "... re2/testing/dfa_verify_profiling.s"
 	@echo "... re2/testing/dump.o"
 	@echo "... re2/testing/dump.i"
 	@echo "... re2/testing/dump.s"
 	@echo "... re2/testing/exhaustive_tester.o"
 	@echo "... re2/testing/exhaustive_tester.i"
 	@echo "... re2/testing/exhaustive_tester.s"
+	@echo "... re2/testing/generate_dfa.o"
+	@echo "... re2/testing/generate_dfa.i"
+	@echo "... re2/testing/generate_dfa.s"
 	@echo "... re2/testing/my_dfa_test.o"
 	@echo "... re2/testing/my_dfa_test.i"
 	@echo "... re2/testing/my_dfa_test.s"
@@ -1699,9 +1921,18 @@ help:
 	@echo "... re2/unicode_groups.o"
 	@echo "... re2/unicode_groups.i"
 	@echo "... re2/unicode_groups.s"
+	@echo "... util/analyzer.o"
+	@echo "... util/analyzer.i"
+	@echo "... util/analyzer.s"
 	@echo "... util/benchmark.o"
 	@echo "... util/benchmark.i"
 	@echo "... util/benchmark.s"
+	@echo "... util/fsm.o"
+	@echo "... util/fsm.i"
+	@echo "... util/fsm.s"
+	@echo "... util/input.o"
+	@echo "... util/input.i"
+	@echo "... util/input.s"
 	@echo "... util/pcre.o"
 	@echo "... util/pcre.i"
 	@echo "... util/pcre.s"

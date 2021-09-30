@@ -6,6 +6,9 @@
 #include <string>
 #include <thread>
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "util/test.h"
 #include "util/flags.h"
@@ -62,8 +65,47 @@ static void DoBuild(Prog* prog) {
 // so if the DFA can search correctly while staying within a
 // 2^n byte limit, it must be handling out-of-memory conditions
 // gracefully.
+
+std::string readFileIntoString(const std::string& path) {
+    std::ifstream input_file(path);
+    if (!input_file.is_open()) {
+        std::cerr << "Could not open the file - '" << path << "'" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    return std::string((std::istreambuf_iterator<char>(input_file)), std::istreambuf_iterator<char>());
+}
+
 TEST(SingleThreaded, SearchDFA) {
-  CHECK(RE2::FullMatch("4a", "[0-9]"));
+  // CHECK(RE2::FullMatch("4a", "[0-9]"));
+  // CHECK(RE2::FullMatch("4a", "[0-9]"));
+
+  char tmp [] = " (\\x2D .{1,20}\\x07(LAN|PROXY|MODEM|MODEM BUSY|UNKNOWN)\\x07Win)|(#-START-#([A-Za-z0-9+\\x2f]{4})*([A-Za-z0-9+\\x2f]{2}==|[A-Za-z0-9+\\x2f]{3}=)?#-END-#)|(%([01]|2([056A]|E%2E)|3[ACEF]|5C))|(%.*%)";
+  // std::string tmp = ".{1,20}";
+  // std::string tmp = "a{0,3}";
+  std::cout<<"regex:"<<tmp<<std::endl;
+  RE2 pattern(tmp);
+  std::string contents = readFileIntoString("/home/wygzero/re2/ANMLZoo_regex/snort/snort_input.pcap");  
+
+
+  // std::string contents = "baab";
+  // std::cout<<"input:"<<contents<<std::endl;
+  StringPiece input(contents);
+  std::cout<<"lenght of contents:"<<contents.length()<<std::endl;
+
+  // if(RE2::FullMatch(input, tmp))
+  // {
+  //   std::cout<<"FUllMatch pass\n";
+  // }
+  // else
+  // {
+  //   std::cout<<"FUllMatch failed\n";
+  // }
+
+  int matchCount = 0;
+  while (RE2::FindAndConsume(&input, pattern)) {
+    matchCount+=1;
+  }
+  std::cout<<"number of match:"<<matchCount<<std::endl;
 }
 
 // Helper function: searches for match, which should match,

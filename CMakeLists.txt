@@ -79,6 +79,10 @@ set(RE2_SOURCES
     re2/unicode_groups.cc
     util/rune.cc
     util/strutil.cc
+
+    util/fsm.cc
+    util/input.cc
+    util/analyzer.cc
     )
 
 add_library(re2 ${RE2_SOURCES})
@@ -122,6 +126,9 @@ if(RE2_BUILD_TESTING)
       # string_generator_test
       my_dfa_test
       dfa_test
+      generate_dfa
+      dfa_verify_profiling
+      dfa_generate_verify_profiling
       # exhaustive1_test
       # exhaustive2_test
       # exhaustive3_test

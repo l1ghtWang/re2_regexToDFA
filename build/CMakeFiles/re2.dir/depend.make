@@ -36,6 +36,7 @@ CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/logging.h
 CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/mix.h
 CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/mutex.h
 CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/strutil.h
+CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/test.h
 CMakeFiles/re2.dir/re2/dfa.cc.o: ../util/util.h
 CMakeFiles/re2.dir/re2/dfa.cc.o: ../re2/dfa.cc
 
@@ -202,6 +203,18 @@ CMakeFiles/re2.dir/re2/unicode_groups.cc.o: ../re2/unicode_groups.h
 CMakeFiles/re2.dir/re2/unicode_groups.cc.o: ../util/utf.h
 CMakeFiles/re2.dir/re2/unicode_groups.cc.o: ../util/util.h
 CMakeFiles/re2.dir/re2/unicode_groups.cc.o: ../re2/unicode_groups.cc
+
+CMakeFiles/re2.dir/util/analyzer.cc.o: ../util/analyzer.cc
+CMakeFiles/re2.dir/util/analyzer.cc.o: ../util/analyzer.h
+CMakeFiles/re2.dir/util/analyzer.cc.o: ../util/fsm.h
+CMakeFiles/re2.dir/util/analyzer.cc.o: ../util/input.h
+
+CMakeFiles/re2.dir/util/fsm.cc.o: ../util/fsm.cc
+CMakeFiles/re2.dir/util/fsm.cc.o: ../util/fsm.h
+CMakeFiles/re2.dir/util/fsm.cc.o: ../util/input.h
+
+CMakeFiles/re2.dir/util/input.cc.o: ../util/input.cc
+CMakeFiles/re2.dir/util/input.cc.o: ../util/input.h
 
 CMakeFiles/re2.dir/util/rune.cc.o: ../util/utf.h
 CMakeFiles/re2.dir/util/rune.cc.o: ../util/rune.cc

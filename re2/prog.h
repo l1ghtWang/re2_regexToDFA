@@ -309,6 +309,7 @@ class Prog {
   // Returns the number of states built.
   // FOR TESTING OR EXPERIMENTAL PURPOSES ONLY.
   int BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb);
+  int BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb, std::string outputFileName, int dfaIdx, std::string &tableFileName);
 
   // Compute bytemap.
   void ComputeByteMap();

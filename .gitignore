@@ -3,3 +3,6 @@
 core
 obj/
 benchlog.*
+/ANMLZoo_regex
+/ANMLZoo_regex/*
+/build/*

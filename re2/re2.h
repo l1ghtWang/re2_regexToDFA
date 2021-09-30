@@ -653,7 +653,8 @@ class RE2 {
     };
 
     Options() :
-      encoding_(EncodingUTF8),
+      // encoding_(EncodingUTF8),
+      encoding_(EncodingLatin1),
       posix_syntax_(false),
       longest_match_(false),
       log_errors_(true),
