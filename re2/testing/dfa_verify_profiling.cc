@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <chrono>
 
 #include "util/fsm.h"
 #include "util/input.h"
@@ -25,9 +26,20 @@ TEST(SingleThreaded, BuildEntireDFA) {
 	// char inputFile [] = "/home/wygzero/re2/ANMLZoo_regex/snort/snort_TestInput2.in";
     // char tableFile [] = "/home/wygzero/re2/ANMLZoo_regex/snort/snort_DFA0.table";
     // char acFile [] = "/home/wygzero/re2/ANMLZoo_regex/snort/snort_AC0.txt";
-    char inputFile [] = "/home/wygzero/re2/ANMLZoo_regex/protomata/protomata_10MB.input";
-    char tableFile [] = "/home/wygzero/re2/ANMLZoo_regex/protomata/protomata_DFA100.table";
-    char acFile [] = "/home/wygzero/re2/ANMLZoo_regex/protomata/protomata_AC100.txt";
+    // char inputFile [] = "/home/wygzero/re2/ANMLZoo_regex/protomata/protomata_10MB.input";
+    // char tableFile [] = "/home/share/Snort/SnortTable/FSM1069_31_256.table";
+    // char acFile [] = "/home/share/Snort/SnortAccept/AC_1069.txt";
+    // char tableFile [] = "/home/share/Snort/SnortTable/FSM4309_607_256.table";
+    // char acFile [] = "/home/share/Snort/SnortAccept/AC_4309.txt";
+    // char tableFile [] = "/home/share/Snort/SnortTable/FSM3096_49_256.table";
+    // char acFile [] = "/home/share/Snort/SnortAccept/AC_3096.txt";
+    // char tableFile [] = "/home/share/Snort/SnortTable/FSM2735_499_256.table";
+    // char acFile [] = "/home/share/Snort/SnortAccept/AC_2735.txt";
+    char tableFile [] = "/home/share/Snort/SnortTable/FSM3365_31_256.table";
+    char acFile [] = "/home/share/Snort/SnortAccept/AC_3365.txt";
+    
+    char inputFile [] = "/home/share/networkpasckages/profiling_input1_1MB.in";
+
     int start = 0;
 	std::string fn(inputFile);
     FSM::MappingRule* rules_ = FSM::MappingRule::defineMappingRule();
@@ -44,7 +56,7 @@ TEST(SingleThreaded, BuildEntireDFA) {
     int state = start;
     int nSymbol = tableObj->getNumSymbol();
     int numState = tableObj->getNumState();
-    
+    std::cout<<"numState:"<<numState<<std::endl;
 
     
     long acceptCount = 0;
@@ -57,6 +69,7 @@ TEST(SingleThreaded, BuildEntireDFA) {
     // }
     // std::cout<<"acceptCount:"<<acceptCount<<std::endl;
 
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
     int state_groundTrue = start;
     int inputSegment = 10;
@@ -162,6 +175,8 @@ TEST(SingleThreaded, BuildEntireDFA) {
         }
         // std::cout<<std::endl;
     }
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count()/1000.0 << "[sec]" << std::endl;
 
     std::cout<<"acceptCount:"<<acceptCount<<std::endl;
 

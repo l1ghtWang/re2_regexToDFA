@@ -10,6 +10,7 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
+#include <chrono>
 
 // #include "util/inputFileName.h"
 #include "util/fsm.h"
@@ -64,10 +65,10 @@ std::string readFileIntoString(const std::string& path) {
 }
 
 extern std::string regexFileName;
-std::string benchmarkPath = "/home/wygzero/re2/ANMLZoo_regex/snort/snort_";
-// std::string benchmarkPath = "/home/wygzero/re2/ANMLZoo_regex/clamAV/clamAV_";
-// std::string benchmarkPath = "/home/wygzero/re2/ANMLZoo_regex/protomata/protomata_";
-// std::string benchmarkPath = "/home/wygzero/re2/ANMLZoo_regex/brill/brill_";
+std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/snort/snort_";
+// std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/clamAV/clamAV_";
+// std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/protomata/protomata_";
+// std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/brill/brill_";
 
 int dfaIdx = 0;
 std::string regexFileName = benchmarkPath+"regex"+std::to_string(dfaIdx)+".regex";
@@ -89,7 +90,7 @@ TEST(SingleThreaded, BuildEntireDFA) {
   Regexp* re = Regexp::Parse(s, Regexp::LikePerl|Regexp::Latin1, NULL);
   ASSERT_TRUE(re != NULL);
 
-  Prog* prog = re->CompileToProg(0);
+  Prog* prog = re->CompileToProg(256*1024*1024*1024);
   ASSERT_TRUE(prog != NULL);
   prog->BuildEntireDFA(Prog::kManyMatch, nullptr, benchmarkPath, dfaIdx, tableFileName);
 //   prog->BuildEntireDFA(Prog::kFirstMatch, nullptr, benchmarkPath, dfaIdx, tableFileName);
