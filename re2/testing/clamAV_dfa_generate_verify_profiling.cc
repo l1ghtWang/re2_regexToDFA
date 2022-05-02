@@ -65,8 +65,8 @@ std::string readFileIntoString(const std::string& path) {
 }
 
 extern std::string regexFileName;
-std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/snort/snort_";
-// std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/clamAV/clamAV_";
+// std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/snort/snort_";
+std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/clamAV/clamAV_";
 // std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/protomata/protomata_";
 // std::string benchmarkPath = "/home/yugwang/re2_regexToDFA/ANMLZoo_regex/brill/brill_";
 
@@ -74,8 +74,8 @@ int dfaIdx = 0;
 std::string regexFileName = benchmarkPath+"regex"+std::to_string(dfaIdx)+".regex";
 // std::string inputFileName(benchmarkPath+"TestInput2.in");
 // std::string inputFileName(benchmarkPath+"brill_input1.txt");
-// std::string inputFileName(benchmarkPath+"vasim_10MB.input");
-std::string inputFileName(benchmarkPath+"Input_10MB_modified.input");
+std::string inputFileName(benchmarkPath+"vasim_10MB_modified.input");
+// std::string inputFileName(benchmarkPath+"Input_10MB_modified.input");
 // std::string inputFileName(benchmarkPath+"30k.input");
 // std::string inputFileName(benchmarkPath+"brownCorpus.input");
 

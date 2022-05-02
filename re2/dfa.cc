@@ -103,7 +103,7 @@ class DFA {
   // FOR TESTING OR EXPERIMENTAL PURPOSES ONLY.
   int BuildAllStates(const Prog::DFAStateCallback& cb);
   int BuildAllStates(const Prog::DFAStateCallback& cb, std::string outputPath, int dfaIdx, std::string &tableFileName);
-
+  int BuildAllStates(const Prog::DFAStateCallback& cb, std::vector<int> &table, std::vector<int> &acceptStates);
   // Computes min and max for matching strings.  Won't return strings
   // bigger than maxlen.
   bool PossibleMatchRange(std::string* min, std::string* max, int maxlen);
@@ -2093,7 +2093,6 @@ int DFA::BuildAllStates(const Prog::DFAStateCallback& cb, std::string outputFile
     // statePTRs.assign((int)(it->second),it->first);
     statePTRs[(int)(it->second)]=(it->first);
     // std::cout<<"stateID:"<<(int)(it->second)<<", statePTR:"<<it->first<<std::endl;
-    counter++;
   }
   // std::cout<<counter<<std::endl;
   // std::cout<<"m iteration finished!!\n";
@@ -2159,6 +2158,133 @@ int DFA::BuildAllStates(const Prog::DFAStateCallback& cb, std::string outputFile
   return static_cast<int>(m.size());
 }
 
+int DFA::BuildAllStates(const Prog::DFAStateCallback& cb, std::vector<int> &table, std::vector<int> &acceptStates) {
+  if (!ok())
+    return 0;
+
+  // Pick out start state for unanchored search
+  // at beginning of text.
+  RWLocker l(&cache_mutex_);
+  SearchParams params(StringPiece(), StringPiece(), &l);
+  params.anchored = false;
+  if (!AnalyzeSearch(&params) ||
+      params.start == NULL ||
+      params.start == DeadState)
+    return 0;
+
+  // Add start state to work queue.
+  // Note that any State* that we handle here must point into the cache,
+  // so we can simply depend on pointer-as-a-number hashing and equality.
+  std::unordered_map<State*, int> m;
+  std::deque<State*> q;
+  m.emplace(params.start, static_cast<int>(m.size()));
+  q.push_back(params.start);
+
+  // Compute the input bytes needed to cover all of the next pointers.
+  int nnext = prog_->bytemap_range() + 1;  // + 1 for kByteEndText slot
+  std::vector<int> input(nnext);
+  for (int c = 0; c < 256; c++) {
+    int b = prog_->bytemap()[c];
+    while (c < 256-1 && prog_->bytemap()[c+1] == b)
+      c++;
+    input[b] = c;
+  }
+  input[prog_->bytemap_range()] = kByteEndText;
+
+  // Scratch space for the output.
+  std::vector<int> output(nnext);
+
+  // Flood to expand every state.
+  bool oom = false;
+  while (!q.empty()) {
+    State* s = q.front();
+    q.pop_front();
+    for (int c : input) {
+      State* ns = RunStateOnByteUnlocked(s, c);
+      if (ns == NULL) {
+        oom = true;
+        break;
+      }
+      if (ns == DeadState) {
+        output[ByteMap(c)] = -1;
+        continue;
+      }
+      if (m.find(ns) == m.end()) {
+        m.emplace(ns, static_cast<int>(m.size()));
+        q.push_back(ns);
+      }
+      output[ByteMap(c)] = m[ns];
+    }
+    if (cb)
+      cb(oom ? NULL : output.data(),
+         s == FullMatchState || s->IsMatch());
+    if (oom)
+      break;
+  }
+
+
+  std::cout<<(m.find(params.start)->first)<<std::endl;
+  std::vector<State*> statePTRs(static_cast<int>(m.size()));
+  int counter=0;
+  for(auto it = m.begin(); it != m.end(); ++it )
+  {
+    // statePTRs.assign((int)(it->second),it->first);
+    statePTRs[(int)(it->second)]=(it->first);
+
+  }
+
+  counter=0;
+  std::cout<<"numState:"<<statePTRs.size()<<std::endl;
+  table.resize(statePTRs.size()*256);
+
+
+  std::cout<<"=========================================================================\n";
+  for(int i=0; i<statePTRs.size();i++)
+  {
+    // if(statePTRs[i]!=DeadState&&!statePTRs[i]->IsMatch())
+    // if(statePTRs[i]!=DeadState)
+    {
+      // std::cout<<"state"<<i<<":";
+      for(int c=0; c<256; c++)
+      {
+        State* nextStatePTR = statePTRs[i]->next_[ByteMap(c)].load(std::memory_order_relaxed);
+        int curStateId;
+        if(m.find(nextStatePTR)==m.end())
+        {
+          // std::cout<<"0 ";
+          // outputTableFile<<"0 ";
+          table[i*256+c]=0;
+        }
+        else
+        {   
+          curStateId = m.find(nextStatePTR)->second;
+          // std::cout<<curStateId<<" ";
+          // outputTableFile<<curStateId<<" ";
+          table[i*256+c]=curStateId;
+        }
+      }
+      // std::cout<<std::endl;
+      // outputTableFile<<std::endl;
+    }
+  }
+  std::cout<<"=========================================================================\n";
+  std::cout<<"Accept:\n";
+  for(int i=0; i<statePTRs.size();i++)
+  {
+    if(statePTRs[i]->IsMatch())
+    {
+      std::cout<<i<<" ";
+      // outputAcceptFile<<i<<" ";
+      acceptStates.push_back(i);
+    }
+  }
+
+  std::cout<<std::endl;
+  // outputTableFile.close();
+  // outputAcceptFile.close();
+  return static_cast<int>(m.size());
+}
+
 // Build out all states in DFA for kind.  Returns number of states.
 int Prog::BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb) {
   return GetDFA(kind)->BuildAllStates(cb);
@@ -2168,7 +2294,9 @@ int Prog::BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb, std::string
   return GetDFA(kind)->BuildAllStates(cb, outputFilePath, dfaIdx, tableFileName);
 }
 
-
+int Prog::BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb, std::vector<int> &table, std::vector<int> &acceptStates) {
+  return GetDFA(kind)->BuildAllStates(cb, table, acceptStates);
+}
 
 // Computes min and max for matching string.
 // Won't return strings bigger than maxlen.

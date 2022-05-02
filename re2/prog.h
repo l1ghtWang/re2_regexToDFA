@@ -310,7 +310,7 @@ class Prog {
   // FOR TESTING OR EXPERIMENTAL PURPOSES ONLY.
   int BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb);
   int BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb, std::string outputFileName, int dfaIdx, std::string &tableFileName);
-
+  int BuildEntireDFA(MatchKind kind, const DFAStateCallback& cb, std::vector<int> &table, std::vector<int> &acceptStates);
   // Compute bytemap.
   void ComputeByteMap();
 

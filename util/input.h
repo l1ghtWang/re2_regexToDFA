@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <set>
+#include "util/Definitions.h"
 
 using namespace std;
 

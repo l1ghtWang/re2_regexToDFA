@@ -10,7 +10,8 @@ include(CTest)
 include(GNUInstallDirs)
 
 if(NOT CMAKE_CXX_STANDARD)
-  set(CMAKE_CXX_STANDARD 11)
+  # set(CMAKE_CXX_STANDARD 11)
+  set(CMAKE_CXX_STANDARD 14)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
 endif()
 
@@ -83,6 +84,7 @@ set(RE2_SOURCES
     util/fsm.cc
     util/input.cc
     util/analyzer.cc
+    util/Definitions.cpp
     )
 
 add_library(re2 ${RE2_SOURCES})
@@ -129,6 +131,14 @@ if(RE2_BUILD_TESTING)
       generate_dfa
       dfa_verify_profiling
       dfa_generate_verify_profiling
+      clamAV_dfa_generate_verify_profiling
+      brill_dfa_generate_verify_profiling
+      protomata_dfa_generate_verify_profiling
+      powerEN_dfa_generate_verify_profiling
+      yara_dfa_generate_verify_profiling
+      EESpecDfa_generate_verify_profiling
+      EESpecDfa_newSnort_generate_verify_profiling
+      EESpecDfa_clamAV_generate_verify_profiling
       # exhaustive1_test
       # exhaustive2_test
       # exhaustive3_test
@@ -145,6 +155,9 @@ if(RE2_BUILD_TESTING)
     target_link_libraries(${target} testing ${EXTRA_TARGET_LINK_LIBRARIES})
     add_test(NAME ${target} COMMAND ${target})
   endforeach()
+
+  # add_executable(EESpecDfa_newSnort_generate_verify_profiling re2/testing/EESpecDfa_newSnort_generate_verify_profiling.cc util/test.cc)
+  # target_link_libraries(EESpecDfa_newSnort_generate_verify_profiling testing ${EXTRA_TARGET_LINK_LIBRARIES})
 
   foreach(target ${BENCHMARK_TARGETS})
     add_executable(${target} re2/testing/${target}.cc util/benchmark.cc)
