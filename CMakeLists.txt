@@ -139,6 +139,8 @@ if(RE2_BUILD_TESTING)
       EESpecDfa_generate_verify_profiling
       EESpecDfa_newSnort_generate_verify_profiling
       EESpecDfa_clamAV_generate_verify_profiling
+      EESpecDfa_clamAV_generate_verify_profilingRealConvLen
+      EESpecDfa_powerEN_generate_verify_profilingRealConvLen
       # exhaustive1_test
       # exhaustive2_test
       # exhaustive3_test
